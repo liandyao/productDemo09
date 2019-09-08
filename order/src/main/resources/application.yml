@@ -1,0 +1,19 @@
+server:
+  port: 8081
+  servlet:
+    context-path: /yidu
+spring:
+  application:
+    name: yidu_order_microService #商品微服务的ID
+
+eureka:
+  client:
+    register-with-eureka: true #是否将自己注册到Eureka服务中，默认为true
+    fetch-registry: true #是否从Eureka中获取注册信息，默认为true
+    service-url:
+      defaultZone: http://yidu:yidu123@localhost:8099/eureka,http://yidu:yidu123@localhost:8098/eureka #Eureka客户端与Eureka服务端进行交互的地址,**注意defaultZone没有提示,需要手动加上**
+  instance:
+    prefer-ip-address: true #将自己的ip地址注册到Eureka服务中,也就是说路径可以显示ip
+
+
+

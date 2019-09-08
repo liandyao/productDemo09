@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yidu.product.dao.YiduProductMapper" >
+  <resultMap id="BaseResultMap" type="com.yidu.product.domain.YiduProduct" >
+    <id column="pro_id" property="proId" jdbcType="VARCHAR" />
+    <result column="pro_type_id" property="proTypeId" jdbcType="VARCHAR" />
+    <result column="pro_name" property="proName" jdbcType="VARCHAR" />
+    <result column="pro_price" property="proPrice" jdbcType="DECIMAL" />
+    <result column="pro_color" property="proColor" jdbcType="VARCHAR" />
+    <result column="pro_remark" property="proRemark" jdbcType="VARCHAR" />
+    <result column="isva" property="isva" jdbcType="INTEGER" />
+    <result column="optime" property="optime" jdbcType="TIMESTAMP" />
+    <result column="oper" property="oper" jdbcType="VARCHAR" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    pro_id, pro_type_id, pro_name, pro_price, pro_color, pro_remark, isva, optime, oper, 
+    sort
+  </sql>
+
+  <select id="findAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from yidu_product
+
+  </select>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from yidu_product
+    where pro_id = #{proId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from yidu_product
+    where pro_id = #{proId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.yidu.product.domain.YiduProduct" >
+    insert into yidu_product (pro_id, pro_type_id, pro_name, 
+      pro_price, pro_color, pro_remark, 
+      isva, optime, oper, 
+      sort)
+    values (#{proId,jdbcType=VARCHAR}, #{proTypeId,jdbcType=VARCHAR}, #{proName,jdbcType=VARCHAR}, 
+      #{proPrice,jdbcType=DECIMAL}, #{proColor,jdbcType=VARCHAR}, #{proRemark,jdbcType=VARCHAR}, 
+      #{isva,jdbcType=INTEGER}, #{optime,jdbcType=TIMESTAMP}, #{oper,jdbcType=VARCHAR}, 
+      #{sort,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yidu.product.domain.YiduProduct" >
+    insert into yidu_product
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="proId != null" >
+        pro_id,
+      </if>
+      <if test="proTypeId != null" >
+        pro_type_id,
+      </if>
+      <if test="proName != null" >
+        pro_name,
+      </if>
+      <if test="proPrice != null" >
+        pro_price,
+      </if>
+      <if test="proColor != null" >
+        pro_color,
+      </if>
+      <if test="proRemark != null" >
+        pro_remark,
+      </if>
+      <if test="isva != null" >
+        isva,
+      </if>
+      <if test="optime != null" >
+        optime,
+      </if>
+      <if test="oper != null" >
+        oper,
+      </if>
+      <if test="sort != null" >
+        sort,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="proId != null" >
+        #{proId,jdbcType=VARCHAR},
+      </if>
+      <if test="proTypeId != null" >
+        #{proTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="proName != null" >
+        #{proName,jdbcType=VARCHAR},
+      </if>
+      <if test="proPrice != null" >
+        #{proPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="proColor != null" >
+        #{proColor,jdbcType=VARCHAR},
+      </if>
+      <if test="proRemark != null" >
+        #{proRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="isva != null" >
+        #{isva,jdbcType=INTEGER},
+      </if>
+      <if test="optime != null" >
+        #{optime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="oper != null" >
+        #{oper,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yidu.product.domain.YiduProduct" >
+    update yidu_product
+    <set >
+      <if test="proTypeId != null" >
+        pro_type_id = #{proTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="proName != null" >
+        pro_name = #{proName,jdbcType=VARCHAR},
+      </if>
+      <if test="proPrice != null" >
+        pro_price = #{proPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="proColor != null" >
+        pro_color = #{proColor,jdbcType=VARCHAR},
+      </if>
+      <if test="proRemark != null" >
+        pro_remark = #{proRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="isva != null" >
+        isva = #{isva,jdbcType=INTEGER},
+      </if>
+      <if test="optime != null" >
+        optime = #{optime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="oper != null" >
+        oper = #{oper,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+    </set>
+    where pro_id = #{proId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yidu.product.domain.YiduProduct" >
+    update yidu_product
+    set pro_type_id = #{proTypeId,jdbcType=VARCHAR},
+      pro_name = #{proName,jdbcType=VARCHAR},
+      pro_price = #{proPrice,jdbcType=DECIMAL},
+      pro_color = #{proColor,jdbcType=VARCHAR},
+      pro_remark = #{proRemark,jdbcType=VARCHAR},
+      isva = #{isva,jdbcType=INTEGER},
+      optime = #{optime,jdbcType=TIMESTAMP},
+      oper = #{oper,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=INTEGER}
+    where pro_id = #{proId,jdbcType=VARCHAR}
+  </update>
+</mapper>

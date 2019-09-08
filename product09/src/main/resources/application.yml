@@ -1,0 +1,27 @@
+server:
+  port: 8089
+  servlet:
+    context-path: /yidu
+spring:
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/yidu_product_db?serverTimezone=Hongkong
+    username: root
+    password: 123
+    driver-class-name: com.mysql.jdbc.Driver
+  application:
+    name: yidu-product-microService #商品微服务的ID
+mybatis:
+  mapper-locations: classpath:config/mapper/*.xml
+
+eureka:
+  client:
+    register-with-eureka: true #是否将自己注册到Eureka服务中，默认为true
+    fetch-registry: true #是否从Eureka中获取注册信息，默认为true
+    service-url:
+      defaultZone: http://yidu:yidu123@localhost:8099/eureka,http://yidu:yidu123@localhost:8098/eureka #Eureka客户端与Eureka服务端进行交互的地址,**注意defaultZone没有提示,需要手动加上**
+  instance:
+    prefer-ip-address: true #将自己的ip地址注册到Eureka服务中,也就是说路径可以显示ip
+    instance-id: product-8089
+
+
+
